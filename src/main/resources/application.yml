@@ -1,0 +1,35 @@
+spring:
+  profiles.active: develop
+---
+spring:
+  profiles: develop
+  dataSource:
+    driverClassName: org.sqlite.JDBC
+    url: jdbc:sqlite:writer.db
+    username:
+    password:
+#  note:
+#    save-with: file  # storage note with file or sql. default file
+#    path: static/notes # storage note path
+#  image:
+#    path: static/images # upload image storage path
+#  timeout:
+#    recycle: 5184000 # second. default 60d
+#    logs: 2592000 # second. default 30d
+
+---
+spring:
+  profiles: release
+  dataSource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/writer?useUnicode=true&useSSL=true&characterEncoding=utf-8
+    username: {name}
+    password: {passd}
+  note:
+    save-with: file # storage note with file or sql. default file
+    path: /home/writer/notes # storage note path
+  image:
+    path: /home/writer/images # upload image storage path
+  timeout:
+      recycle: 5184000 # second. default 60d
+      logs: 2592000 # second. default 30d
